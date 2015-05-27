@@ -47,5 +47,12 @@ namespace StringCalculator.Tests {
             Assert.AreEqual(result, expected);
         }
 
+        [TestCase("1,2\n3", 6)]
+        [TestCase("1\n2,3", 6)]
+        public void Add_Given_TwoNumbers_UsingDifferentDelimiters_Returns_SumOfNumbers(string numbers, int expected)
+        {
+            int result = calc.Add(numbers);
+            Assert.AreEqual(result, expected);
+        }
     }
 }
