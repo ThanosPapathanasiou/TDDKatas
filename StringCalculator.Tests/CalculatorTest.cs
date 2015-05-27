@@ -32,5 +32,13 @@ namespace StringCalculator.Tests {
             Assert.AreEqual(result, expected);
         }
 
+        [TestCase("1,2",3)]
+        [TestCase("4,5", 9)]
+        public void Add_Given_TwoNumbers_Returns_SumOfNumbers(string numbers, int expected)
+        {
+            int result = calc.Add(numbers);
+            Assert.AreEqual(result, expected);
+        }
+
     }
 }

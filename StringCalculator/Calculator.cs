@@ -11,6 +11,14 @@ namespace StringCalculator {
             if (IsEmptyString(numbers))
                 return HandleEmptyString();
 
+            if (numbers.Contains(','))
+            {
+                return Int32.Parse(numbers.Split(',')[0]) + 
+                       Int32.Parse(numbers.Split(',')[1]);
+
+            }
+                
+
             return Int32.Parse(numbers);
         }
 
