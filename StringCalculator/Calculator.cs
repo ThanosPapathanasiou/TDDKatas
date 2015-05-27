@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace StringCalculator {
     public class Calculator {
+        private char separator = ',';
+
         public int Add(string numbers)
         {
             if (IsEmptyString(numbers))
@@ -22,15 +24,17 @@ namespace StringCalculator {
             return Int32.Parse(numbers);
         }
 
-        private int HandleMultipleNumbers(string numbers)
-        {
-            return HandleOneNumber(numbers.Split(',')[0]) + 
-                   HandleOneNumber(numbers.Split(',')[1]);
-        }
-
         private bool IsMultipleNumbers(string numbers)
         {
-            return numbers.Contains(',');
+            return numbers.Contains(separator);
+        }
+
+
+
+        private int HandleMultipleNumbers(string numbers)
+        {
+            string[] nums = numbers.Split(separator);
+            return nums.Sum(num => HandleOneNumber(num));
         }
 
 
