@@ -8,10 +8,21 @@ namespace StringCalculator {
     public class Calculator {
         public int Add(string numbers)
         {
-            if (numbers == "")
-                return 0;
+            if (IsEmptyString(numbers))
+                return HandleEmptyString();
 
             return Int32.Parse(numbers);
+        }
+
+
+        private bool IsEmptyString(string numbers)
+        {
+            return numbers == "";
+        }
+
+        private int HandleEmptyString()
+        {
+            return 0;
         }
     }
 }
