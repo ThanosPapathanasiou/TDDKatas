@@ -11,15 +11,26 @@ namespace StringCalculator {
             if (IsEmptyString(numbers))
                 return HandleEmptyString();
 
-            if (numbers.Contains(','))
-            {
-                return Int32.Parse(numbers.Split(',')[0]) + 
-                       Int32.Parse(numbers.Split(',')[1]);
+            if (IsMultipleNumbers(numbers))
+                return HandleMultipleNumbers(numbers);
 
-            }
-                
+            return HandleOneNumber(numbers);
+        }
 
+        private static int HandleOneNumber(string numbers)
+        {
             return Int32.Parse(numbers);
+        }
+
+        private int HandleMultipleNumbers(string numbers)
+        {
+            return HandleOneNumber(numbers.Split(',')[0]) + 
+                   HandleOneNumber(numbers.Split(',')[1]);
+        }
+
+        private bool IsMultipleNumbers(string numbers)
+        {
+            return numbers.Contains(',');
         }
 
 
