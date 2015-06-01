@@ -65,6 +65,11 @@ namespace StringCalculator.Tests {
             Assert.AreEqual(result, expected);
         }
 
-
+        [Test]
+        public void Add_Given_NegativeNumber_Throws_Exception()
+        {
+            TestDelegate test = () => calc.Add("-1");
+            Assert.Throws<ArgumentOutOfRangeException>(test);
+        }
     }
 }

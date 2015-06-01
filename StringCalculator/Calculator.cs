@@ -36,7 +36,12 @@ namespace StringCalculator {
 
         private static int HandleOneNumber(string numbers)
         {
-            return Int32.Parse(numbers);
+            int number =  Int32.Parse(numbers);
+
+            if(number < 0)
+                throw new ArgumentOutOfRangeException(number.ToString());
+
+            return number;
         }
 
         private bool IsMultipleNumbers(string numbers)
