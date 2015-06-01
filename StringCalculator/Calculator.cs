@@ -37,11 +37,24 @@ namespace StringCalculator {
         private static int HandleOneNumber(string numbers)
         {
             int number =  Int32.Parse(numbers);
-
-            if(number < 0)
-                throw new ArgumentOutOfRangeException(number.ToString());
+            
+            HandleNegativeNumbers(number);
+            number = HandleNumbersGreaterThanOneThousand(number);
 
             return number;
+        }
+
+        private static int HandleNumbersGreaterThanOneThousand(int number)
+        {
+            if (number > 1000)
+                number = 0;
+            return number;
+        }
+
+        private static void HandleNegativeNumbers(int number)
+        {
+            if (number < 0)
+                throw new ArgumentOutOfRangeException(number.ToString());
         }
 
         private bool IsMultipleNumbers(string numbers)

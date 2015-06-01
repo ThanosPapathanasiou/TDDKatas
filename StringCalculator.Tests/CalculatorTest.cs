@@ -21,7 +21,7 @@ namespace StringCalculator.Tests {
         public void Add_Given_EmptyString_Returns_Zero()
         {
             int result = calc.Add("");
-            Assert.AreEqual(result, 0);
+            Assert.AreEqual(0,result);
         }
 
         [TestCase("1",1)]
@@ -29,7 +29,7 @@ namespace StringCalculator.Tests {
         public void Add_Given_OneNumber_Returns_Number(string numbers, int expected)
         {
             int result = calc.Add(numbers);
-            Assert.AreEqual(result, expected);
+            Assert.AreEqual(expected, result);
         }
 
         [TestCase("1,2",3)]
@@ -37,14 +37,14 @@ namespace StringCalculator.Tests {
         public void Add_Given_TwoNumbers_Returns_SumOfNumbers(string numbers, int expected)
         {
             int result = calc.Add(numbers);
-            Assert.AreEqual(result, expected);
+            Assert.AreEqual(expected, result);
         }
         [TestCase("1,2,3", 6)]
         [TestCase("1,2,3,4,5,6", 21)]
         public void Add_Given_ManyNumbers_Returns_SumOfNumbers(string numbers, int expected)
         {
             int result = calc.Add(numbers);
-            Assert.AreEqual(result, expected);
+            Assert.AreEqual(expected, result);
         }
 
         [TestCase("1,2\n3", 6)]
@@ -52,7 +52,7 @@ namespace StringCalculator.Tests {
         public void Add_Given_TwoNumbers_UsingDifferentDelimiters_Returns_SumOfNumbers(string numbers, int expected)
         {
             int result = calc.Add(numbers);
-            Assert.AreEqual(result, expected);
+            Assert.AreEqual(expected, result);
         }
 
         [TestCase("//;\n", 0)]
@@ -62,7 +62,7 @@ namespace StringCalculator.Tests {
         public void Add_Given_NewDelimiter_Returns_SumOfNumbers(string numbers, int expected)
         {
             int result = calc.Add(numbers);
-            Assert.AreEqual(result, expected);
+            Assert.AreEqual(expected, result);
         }
 
         [Test]
@@ -71,5 +71,15 @@ namespace StringCalculator.Tests {
             TestDelegate test = () => calc.Add("-1");
             Assert.Throws<ArgumentOutOfRangeException>(test);
         }
+
+        [TestCase("//;\n1001", 0)]
+        [TestCase("//;\n1004,1;2\n3", 6)]
+        public void Add_Given_NumberGreaterThan100_IgnoresThatNumber(string numbers, int expected)
+        {
+            int result = calc.Add(numbers);
+            Assert.AreEqual(expected,result);
+        }
+
+
     }
 }
