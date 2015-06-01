@@ -10,6 +10,9 @@ namespace StringCalculator {
 
         public int Add(string numbers)
         {
+            if (HasDelimiterLine(numbers))
+                numbers = HandleDelimiterLine(numbers);
+
             if (IsEmptyString(numbers))
                 return HandleEmptyString();
 
@@ -17,6 +20,18 @@ namespace StringCalculator {
                 return HandleMultipleNumbers(numbers);
 
             return HandleOneNumber(numbers);
+        }
+
+        private string HandleDelimiterLine(string numbers)
+        {
+            delimiters += numbers[2];
+            numbers = numbers.Substring(numbers.IndexOf('\n') + 1);
+            return numbers;
+        }
+
+        private bool HasDelimiterLine(string numbers)
+        {
+            return numbers.StartsWith("//");
         }
 
         private static int HandleOneNumber(string numbers)
